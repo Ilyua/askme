@@ -13,8 +13,9 @@ class User < ApplicationRecord
   DIGEST = OpenSSL::Digest::SHA256.new
   has_many :questions
   validates :username ,length: {maximum: 40},format:{with: /[a-zA-z0-9_]/, message:"not allows several symbols"}
-  validates :email, :username, presence: true,email:true
+  validates :email, :username, presence: true
   validates :email, :username, uniqueness: true
+  validates :email,email:true
   attr_accessor :password
 
   validates_presence_of :password, on: :create
