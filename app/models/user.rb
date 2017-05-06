@@ -1,21 +1,12 @@
 require 'openssl'
 
-class EmailValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-      record.errors[attribute] << (options[:message] || "is not an email")
-    end
-  end
-end
-
 class User < ApplicationRecord
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
   has_many :questions
-  validates :username ,length: {maximum: 40},format:{with: /[a-zA-z0-9_]/, message:"not allows several symbols"}
-  validates :email, :username, presence: true
+  validates :username, length: {maximum: 40}, format: {with: /[a-zA-z0-9_]/}
   validates :email, :username, uniqueness: true
-  validates :email,email:true
+  validates :email,format: {with:/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, presence: true
   attr_accessor :password
 
   validates_presence_of :password, on: :create

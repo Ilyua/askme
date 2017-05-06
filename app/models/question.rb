@@ -1,4 +1,5 @@
 class Question < ApplicationRecord
   belongs_to :user
-  validates :text , :user, presence: true,length: {maximum: 255}
+  validates :text , length: {maximum: 255}, presence: true
+  validates :user, presence: true
 end
