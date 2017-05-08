@@ -24,4 +24,8 @@ module ApplicationHelper
 
     return krokodilov if ostatok_second > 4 || ostatok_second == 0
   end
+
+  def fa_icon(icon_class)
+    content_tag 'span', '', class: "fa fa-#{icon_class}"
+  end
 end
