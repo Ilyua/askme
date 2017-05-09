@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :load_user, except: [:index, :create, :new]
-  before_action :authorize,except: [:index, :new, :create,:show]
+  before_action :authorize, except: [:index, :new, :create, :show]
 
   def index
     @users = User.all
@@ -13,6 +13,15 @@ class UsersController < ApplicationController
 
   def edit
 
+  end
+
+  def destroy
+    Question.where('question_user_id=?',@user.id).destroy_all
+    if @user.destroy
+      redirect_to root_url, notice: 'вы успешно удалили'
+    else
+      redirect_to user_path(@user)
+    end
   end
 
   def update
@@ -28,7 +37,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_url, notice: 'Успешно зарегистрирован'
+
+      user = User.authenticate(user_params[:email], user_params[:password])
+      if user.present?
+        session[:user_id] = user.id
+        redirect_to root_url, notice: 'вы успешно зарегались'
+      else
+        render 'new', notice: 'Какая-то ошибка'
+      end
+
 
     else
       render 'new'
@@ -47,7 +64,7 @@ class UsersController < ApplicationController
   private
 
   def authorize
-   reject_user unless @user == current_user
+    reject_user unless @user == current_user
   end
 
   def load_user
