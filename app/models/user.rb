@@ -3,14 +3,18 @@ require 'openssl'
 class User < ApplicationRecord
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
+
+  attr_accessor :password
+
   has_many :questions
+
   validates :username, length: {maximum: 40}, format: {with: /[a-zA-z0-9_]/}
   validates :username, uniqueness: true
   validates :email, :username, uniqueness: true
-  validates :email,format: {with:/\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, presence: true
-  attr_accessor :password
-  validates_presence_of :password, on: :create
-  validates_confirmation_of :password
+  validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, presence: true
+  validates :password, presence: true, on: :create
+  validates :password, confirmation: true
+
   before_save :encrypt_password
   before_validation :username_downcase
 
@@ -27,7 +31,6 @@ class User < ApplicationRecord
     end
   end
 
-
   def self.hash_to_string(password_hash)
     password_hash.unpack('H*')[0]
   end
@@ -40,5 +43,4 @@ class User < ApplicationRecord
       nil
     end
   end
-
 end
