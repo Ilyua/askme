@@ -14,7 +14,7 @@ before_action :authorize_user, except: [:create]
     if @question.save
       redirect_to user_path(@question.user), notice: 'Question was successfully created.'
     else
-      render :new
+      render :edit
     end
   end
 

@@ -20,6 +20,22 @@
     <%= sklonenie(@questions.size, 'вопрос', 'вопроса', 'вопросов') %>
   </h3>
 
+  <div class="user-statistics container text-center">
+    <div class="column-1-3">
+      <h1 class="title-small"><%= @questions_count %></h1>
+      <p><%= sklonenie(@questions_count, 'Вопрос', 'Вопроса', 'Вопросов') %></p>
+    </div>
+    <div class="column-1-3">
+      <h1 class="title-small"><%= @answers_count %></h1>
+      <p><%= sklonenie(@answers_count, 'Ответ', 'Ответа', 'Ответов') %></p>
+    </div>
+    <div class="column-1-3">
+      <h1 class="title-small"><%= @unanswered_count %></h1>
+      <p><%= sklonenie(@unanswered_count, 'Безответный', 'Безответных', 'Безответных') %></p>
+    </div>
+  </div>
+</div>
+
   <div class="user-ask-button container text-center" id="ask-button">
     <%= link_to "Спроси меня", '', class: 'button button-light' %>
   </div>
