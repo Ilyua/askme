@@ -44,6 +44,7 @@ GEM
     byebug (9.0.6)
     concurrent-ruby (1.0.5)
     erubis (2.7.0)
+    execjs (2.7.0)
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
@@ -68,6 +69,7 @@ GEM
     nio4r (2.0.0)
     nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
+    pg (0.20.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -110,6 +112,8 @@ GEM
     thread_safe (0.3.6)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
+    uglifier (3.2.0)
+      execjs (>= 0.3.0, < 3)
     web-console (3.5.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -126,8 +130,10 @@ DEPENDENCIES
   byebug
   jquery-rails
   listen
+  pg
   rails (~> 5.0.2)
   sqlite3
+  uglifier
   web-console (>= 3.3.0)
 
 BUNDLED WITH
