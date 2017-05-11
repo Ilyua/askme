@@ -16,7 +16,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    Question.where('question_user_id=?',@user.id).destroy_all
     if @user.destroy
       redirect_to root_url, notice: 'вы успешно удалили'
     else
@@ -25,8 +24,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    redirect_to root_url, alert: 'Вы уже залогинены' if current_user.present?
-
     if @user.update(user_params)
       redirect_to user_path(@user), notice: 'Успешно отредактировано'
     else

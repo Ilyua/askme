@@ -6,7 +6,8 @@ class User < ApplicationRecord
 
   attr_accessor :password
 
-  has_many :questions
+  has_many :questions, dependent: :destroy
+  has_many :author_questions, foreign_key: 'author_id', class_name: 'Question', dependent: :destroy
 
   validates :username, length: {maximum: 40}, format: {with: /[a-zA-z0-9_]/}
   validates :username, uniqueness: true
