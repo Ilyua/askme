@@ -13,6 +13,7 @@ class User < ApplicationRecord
   validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, presence: true, uniqueness: true
   validates :password, presence: true, on: :create
   validates :password, confirmation: true
+  validates :background_color, format: {with: /\A\#([a-f0-9]){6}\z/i}
 
   before_save :encrypt_password
   before_validation :username_downcase
