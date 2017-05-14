@@ -34,10 +34,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      user = User.authenticate(user_params[:email], user_params[:password])
-      if user.present?
-        session[:user_id] = user.id
-        redirect_to root_url, notice: 'вы успешно зарегались'
+        if @user.present?
+        session[:user_id] = @user.id
+        redirect_to root_url, notice: 'Вы успешно зарегались'
       else
         render 'new', notice: 'Какая-то ошибка'
       end
@@ -49,7 +48,6 @@ class UsersController < ApplicationController
   def show
     @questions = @user.questions.order(created_at: :desc)
     @new_question = @user.questions.build
-
     @questions_count = @questions.count
     @answers_count = @questions.where.not(answer: nil).count
     @unanswered_count = @questions_count - @answers_count
