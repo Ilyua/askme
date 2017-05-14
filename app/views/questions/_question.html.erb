@@ -18,7 +18,7 @@
     </div>
 
     <div>
-      <% if question.author_id.present? %>
+      <% if question.author.present? %>
          От<%=link_to ' @'+ question.author.username, user_path(question.author) %>
       <% end %>
     </div>

@@ -9,10 +9,8 @@ class User < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :author_questions, foreign_key: 'author_id', class_name: 'Question', dependent: :destroy
 
-  validates :username, length: {maximum: 40}, format: {with: /[a-zA-z0-9_]/}
-  validates :username, uniqueness: true
-  validates :email, :username, uniqueness: true
-  validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, presence: true
+  validates :username, length: {maximum: 40}, format: {with: /[a-zA-z0-9_]/}, uniqueness: true
+  validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, presence: true, uniqueness: true
   validates :password, presence: true, on: :create
   validates :password, confirmation: true
 
