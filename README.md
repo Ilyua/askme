@@ -1,24 +1,15 @@
-# README
+# Приложение "Хорошие вопросы"
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+--------------------------------
+## Описание
+Это приложение - клон популярного ask.fm, имеет схожий функционал.
+Создано в качестве учебного проекта на курсах разработки RoR с использованием Rails 5
 
-Things you may want to cover:
+Предназначено для освоения работы с базами данных, функционалом rails, версткой web-страниц.
 
-* Ruby version
+## URL
+[сайт Heroku](https://simpleask.herokuapp.com/)
 
-* System dependencies
+## Сopyright
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Ilyua Chumak
