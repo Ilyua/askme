@@ -13,3 +13,10 @@
 ## Сopyright
 
 Ilyua Chumak
+
+--------------------------------
+# App "Good questions"
+
+Allow you ask something your friends and strangers. 
+It is Ask.fm clone
+So, it is study-progect that help learn Rails functions, work with DataBases and backend/frontend developing
